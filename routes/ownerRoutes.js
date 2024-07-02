@@ -9,7 +9,7 @@ router.post("/register", ownerController.ownerRegister);
 router.get(
   "/profile",
   authMiddleware,
-  roleMiddleware("owner"),
+  roleMiddleware(["owner"]),
   ownerController.ownerProfile
 );
 

@@ -4,7 +4,6 @@ exports.addItem = async (req, res) => {
   const { item_name, item_cost } = req.body;
 
   const new_item = { itemname: item_name, itemcost: item_cost };
-  console.log(new_item);
   Item.addItem(new_item, (err, result) => {
     if (err) throw err;
     res.send({ msg: "Item added successfully", item: new_item });
