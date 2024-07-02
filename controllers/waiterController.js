@@ -53,3 +53,7 @@ exports.waiterRegister = async (req, res) => {
     res.status(500).send("Server error.");
   }
 };
+
+exports.waiterProfile = async (req, res) => {
+  res.send("welcome waiter");
+};
