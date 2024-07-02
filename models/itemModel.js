@@ -1,5 +1,4 @@
 const db = require("../config/db");
-const { getItemByName } = require("../controllers/itemController");
 
 const Item = {
   getAllItems: (callback) => {

@@ -7,35 +7,35 @@ const roleMiddleware = require("../middleware/roleMiddleware");
 router.post(
   "/addItem",
   authMiddleware,
-  roleMiddleware(["owner", "waiter"]),
+  roleMiddleware(["owner"]),
   itemController.addItem
 );
 
 router.delete(
   "/deleteItem",
   authMiddleware,
-  roleMiddleware(["owner", "waiter"]),
+  roleMiddleware(["owner"]),
   itemController.deleteItem
 );
 
 router.get(
   "/getItemByName/:name",
   authMiddleware,
-  roleMiddleware(["owner", "waiter"]),
+  roleMiddleware(["owner", "waiter", "user"]),
   itemController.getItemByName
 );
 
 router.get(
   "/getItems",
   authMiddleware,
-  roleMiddleware(["owner", "waiter"]),
+  roleMiddleware(["owner", "waiter", "user"]),
   itemController.getAllItems
 );
 
 router.put(
   "/updateItem/:name",
   authMiddleware,
-  roleMiddleware(["owner", "waiter"]),
+  roleMiddleware(["owner"]),
   itemController.updateItem
 );
 
