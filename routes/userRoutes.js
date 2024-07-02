@@ -9,7 +9,7 @@ router.post("/register", userController.userRegister);
 router.get(
   "/profile",
   authMiddleware,
-  roleMiddleware("user"),
+  roleMiddleware(["user"]),
   userController.userProfile
 );
 

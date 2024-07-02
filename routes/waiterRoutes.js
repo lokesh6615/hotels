@@ -9,7 +9,7 @@ router.post("/register", waiterController.waiterRegister);
 router.get(
   "/profile",
   authMiddleware,
-  roleMiddleware("waiter"),
+  roleMiddleware(["waiter"]),
   waiterController.waiterProfile
 );
 
