@@ -3,10 +3,26 @@ const Item = require("../models/itemModel");
 exports.addItem = async (req, res) => {
   const { item_name, item_cost } = req.body;
 
-  const new_item = { itemname: item_name, itemcost: item_cost };
-  Item.addItem(new_item, (err, result) => {
-    if (err) throw err;
-    res.send({ msg: "Item added successfully", item: new_item });
+  // Check if the item already exists in the database
+  Item.getItemByName(item_name, (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Server error.");
+    }
+
+    if (result.length > 0) {
+      return res.status(400).send("Item already exists.");
+    }
+
+    // Item does not exist, proceed with adding
+    const new_item = { itemname: item_name, itemcost: item_cost };
+    Item.addItem(new_item, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Server error.");
+      }
+      res.send({ msg: "Item added successfully", item: new_item });
+    });
   });
 };
 
